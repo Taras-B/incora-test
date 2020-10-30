@@ -26,6 +26,13 @@ export interface ISetPostsAction extends Action<PostsActionType> {
     payload: Array<IPost>
 }
 
+export interface IFetchAction extends Action<PostsActionType> {
+    type: PostsActionType.FETCH_POSTS,
+    payload: number
+
+}
+// interface Create post
+
 export interface IFetchAddPostAction extends Action<PostsActionType> {
     type: PostsActionType.FETCH_ADD_POST,
     payload: {
@@ -36,11 +43,6 @@ export interface IFetchAddPostAction extends Action<PostsActionType> {
 export interface IAddPostAction extends Action<PostsActionType> {
     type: PostsActionType.ADD_POST,
     payload: IPost
-}
-export interface IFetchAction extends Action<PostsActionType> {
-    type: PostsActionType.FETCH_POSTS,
-    payload: number
-
 }
 export interface ISetLoadingAction extends Action<PostsActionType> {
     type: PostsActionType.SET_LOADING,

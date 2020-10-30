@@ -17,6 +17,10 @@ export const postsAPI = {
         const response = await instance.get<Array<IPost>>(`posts?userId=${userId}`)
         return response.data
     },
+    async getByPostId(postId: number) {
+        const response = await instance.get<IPost>(`posts/${postId}`)
+        return response.data
+    },
     async getComments(postId: number) {
         const response = await instance.get<Array<IComment>>(`posts/${postId}/comments`)
         return response.data

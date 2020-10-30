@@ -3,7 +3,7 @@ import { postsAPI } from '../../../api';
 import { addPost, setLoadingPost, setPosts } from './actionCreator';
 import { IFetchAction, IFetchAddPostAction, LoadingState, PostsActionType } from "./type";
 
-function* workerFetchPostSaga({ payload }: IFetchAction) {
+function* workerFetchPostsSaga({ payload }: IFetchAction) {
     try {
         const posts = yield call(postsAPI.getByUserId, payload)
         yield put(setPosts(posts))
@@ -22,7 +22,7 @@ function* workerAddPostSaga({ payload }: IFetchAddPostAction) {
     }
 }
 
-export function* sagaPostWatcher() {
-    yield takeEvery(PostsActionType.FETCH_POSTS, workerFetchPostSaga)
+export function* sagaPostsWatcher() {
+    yield takeEvery(PostsActionType.FETCH_POSTS, workerFetchPostsSaga)
     yield takeEvery(PostsActionType.FETCH_ADD_POST, workerAddPostSaga)
 }
