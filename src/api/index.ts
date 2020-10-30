@@ -1,15 +1,24 @@
 import axios from 'axios'
-import { IPost } from '../type'
+import { IComment, IPost, IUser } from '../type'
 
 export const instance = axios.create({
     baseURL: 'https://jsonplaceholder.typicode.com/',
 })
 
-
+export const userAPI = {
+    async getAll() {
+        const response = await instance.get<Array<IUser>>('users')
+        return response.data
+    }
+}
 
 export const postsAPI = {
-    async fetchAll() {
-        const response = await instance.get<Array<IPost>>('posts')
+    async getByUserId(userId: number) {
+        const response = await instance.get<Array<IPost>>(`posts?userId=${userId}`)
+        return response.data
+    },
+    async getComments(postId: number) {
+        const response = await instance.get<Array<IComment>>(`posts/${postId}/comments`)
         return response.data
     },
     async create(title: string, body: string, userId: number) {
