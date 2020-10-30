@@ -16,6 +16,9 @@ export const postReducer = produce((draft: Draft<IPostsState>, action: PostsActi
             draft.posts = action.payload
             draft.loading = LoadingState.LOADED
             break
+        case PostsActionType.FETCH_ADD_POST:
+            draft.loading = LoadingState.LOADING
+            break
         case PostsActionType.ADD_POST:
             draft.posts.push(action.payload)
             draft.loading = LoadingState.LOADED
