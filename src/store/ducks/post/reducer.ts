@@ -3,6 +3,7 @@ import { IPostState, LoadingState, PostAction, PostActionType } from "./type"
 
 const initialPostsState: IPostState = {
     post: undefined,
+    comments: [],
     loading: LoadingState.LOADED
 }
 

@@ -5,7 +5,8 @@ import { IFetchCommentsAction, IFetchPostAction, IFetchUpdatePostAction, Loading
 
 function* workerFetchPostSaga({ payload }: IFetchPostAction) {
     try {
-        const post = yield call(postsAPI.getByUserId, payload)
+        const post = yield call(postsAPI.getByPostId, payload)
+
         yield put(setPost(post))
     } catch (e) {
         console.log(e)

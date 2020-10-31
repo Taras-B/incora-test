@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -9,17 +9,14 @@ import { fetchPosts, fetchAddPost } from '../store/ducks/posts/actionCreator'
 import { selectPostsItems } from '../store/ducks/posts/selector'
 import Paper from '@material-ui/core/Paper'
 import { PostForm } from '../components/PostForm'
-
-function useQuery() {
-  return new URLSearchParams(useLocation().search)
-}
+import { useQuery } from '../utils/useQuery'
 
 export const Posts: React.FC = () => {
   const query = useQuery()
   const userId = query.get('userId')
   const dispatch = useDispatch()
   const posts = useSelector(selectPostsItems)
-  console.log(' Posts', posts)
+  console.log(' USER_ID', userId)
   //TODO: add userID
   const addPostWithForm = useCallback(
     (title: string, body: string) => {
@@ -30,11 +27,10 @@ export const Posts: React.FC = () => {
   )
 
   useEffect(() => {
-    if (userId && posts.length === 0) {
+    if (userId) {
       dispatch(fetchPosts(+userId))
       console.log('fetch_posts')
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, userId])
 
   return (
@@ -49,7 +45,7 @@ export const Posts: React.FC = () => {
               </Grid>
               <Grid item xs={1}>
                 <Link to={`/posts/${post.id}?userId=${post.userId}`}>
-                  <Typography>posts</Typography>
+                  <Typography>link</Typography>
                 </Link>
               </Grid>
             </Grid>
