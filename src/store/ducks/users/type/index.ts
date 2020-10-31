@@ -2,7 +2,7 @@ import { Action } from "redux";
 import { IUser } from "../../../../type";
 
 export interface IUserState {
-    users?: IUser[]
+    users: IUser[]
     loading: LoadingUserState
 }
 
