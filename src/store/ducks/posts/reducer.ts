@@ -6,7 +6,7 @@ const initialPostsState: IPostsState = {
     loading: LoadingState.LOADED
 }
 
-export const postReducer = produce((draft: Draft<IPostsState>, action: PostsAction) => {
+export const postsReducer = produce((draft: Draft<IPostsState>, action: PostsAction) => {
     switch (action.type) {
         case PostsActionType.FETCH_POSTS:
             draft.posts = []
