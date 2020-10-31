@@ -14,7 +14,8 @@ function* workerFetchPostsSaga({ payload }: IFetchAction) {
 }
 function* workerAddPostSaga({ payload }: IFetchAddPostAction) {
     try {
-        const post = yield call(postsAPI.create, payload.body, payload.title)
+        const post = yield call(postsAPI.create, payload.title, payload.body)
+
         yield put(addPost(post))
     } catch (e) {
         console.log(e)
