@@ -1,9 +1,11 @@
-import { IPost } from "../../../type";
+import { IComment, IPost } from "../../../type";
 import {
     IDeletePostAction,
+    IFetchCommentsAction,
     IFetchDeletePostAction,
     IFetchPostAction,
     IFetchUpdatePostAction,
+    ISetCommentsAction,
     ISetLoadingAction,
     ISetPostAction,
     IUpdatePostAction,
@@ -21,6 +23,14 @@ export const fetchPost = (postId: number): IFetchPostAction => ({
 })
 export const setPost = (payload: IPost): ISetPostAction => ({
     type: PostActionType.SET_POST,
+    payload
+})
+export const fetchComments = (postId: number): IFetchCommentsAction => ({
+    type: PostActionType.FETCH_COMMENTS,
+    payload: postId
+})
+export const setComments = (payload: IComment[]): ISetCommentsAction => ({
+    type: PostActionType.SET_COMMENTS,
     payload
 })
 export const fetchUpdatePost = (payload: IPost): IFetchUpdatePostAction => ({

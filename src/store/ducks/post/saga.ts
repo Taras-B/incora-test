@@ -1,12 +1,21 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { postsAPI } from '../../../api';
-import { setLoadingPost, setPost, updatePost } from './actionCreator';
-import { IFetchPostAction, IFetchUpdatePostAction, LoadingState, PostActionType } from "./type";
+import { setComments, setLoadingPost, setPost, updatePost } from './actionCreator';
+import { IFetchCommentsAction, IFetchPostAction, IFetchUpdatePostAction, LoadingState, PostActionType } from "./type";
 
 function* workerFetchPostSaga({ payload }: IFetchPostAction) {
     try {
         const post = yield call(postsAPI.getByUserId, payload)
         yield put(setPost(post))
+    } catch (e) {
+        console.log(e)
+        yield put(setLoadingPost(LoadingState.ERROR))
+    }
+}
+function* workerFetchCommentsSaga({ payload }: IFetchCommentsAction) {
+    try {
+        const comments = yield call(postsAPI.getComments, payload)
+        yield put(setComments(comments))
     } catch (e) {
         console.log(e)
         yield put(setLoadingPost(LoadingState.ERROR))
@@ -22,8 +31,9 @@ function* workerUpdatePostSaga({ payload }: IFetchUpdatePostAction) {
         yield put(setLoadingPost(LoadingState.ERROR))
     }
 }
-
+//TODO: Update Fetch post and comment
 export function* sagaPostWatcher() {
     yield takeEvery(PostActionType.FETCH_POST, workerFetchPostSaga)
     yield takeEvery(PostActionType.FETCH_UPDATE_POST, workerUpdatePostSaga)
+    yield takeEvery(PostActionType.FETCH_COMMENTS, workerFetchCommentsSaga)
 }

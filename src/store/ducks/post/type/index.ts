@@ -1,8 +1,9 @@
 import { Action } from "redux";
-import { IPost } from "../../../../type";
+import { IComment, IPost } from "../../../../type";
 
 export interface IPostState {
     post?: IPost
+    comments?: IComment[]
     loading: LoadingState
 }
 
@@ -16,6 +17,8 @@ export enum LoadingState {
 export enum PostActionType {
     FETCH_POST = 'post/FETCH_POST',
     SET_POST = 'post/SET_POST',
+    FETCH_COMMENTS = 'post/FETCH_COMMENTS',
+    SET_COMMENTS = 'post/SET_COMMENTS',
     FETCH_UPDATE_POST = 'post/FETCH_UPDATE_POST',
     UPDATE_POST = 'post/UPDATE_POST',
     FETCH_DELETE_POST = 'post/FETCH_DELETE_POST',
@@ -33,7 +36,17 @@ export interface IFetchPostAction extends Action<PostActionType> {
     payload: number
 
 }
-// interface Update post
+//*  Comments
+export interface ISetCommentsAction extends Action<PostActionType> {
+    type: PostActionType.SET_COMMENTS,
+    payload: IComment[]
+}
+
+export interface IFetchCommentsAction extends Action<PostActionType> {
+    type: PostActionType.FETCH_COMMENTS,
+    payload: number
+}
+// *interface Update post
 export interface IFetchUpdatePostAction extends Action<PostActionType> {
     type: PostActionType.FETCH_UPDATE_POST,
     payload: IPost
@@ -42,7 +55,7 @@ export interface IUpdatePostAction extends Action<PostActionType> {
     type: PostActionType.UPDATE_POST,
     payload: IPost
 }
-// interface Delete post
+//* interface Delete post
 export interface IFetchDeletePostAction extends Action<PostActionType> {
     type: PostActionType.FETCH_DELETE_POST,
     payload: number
