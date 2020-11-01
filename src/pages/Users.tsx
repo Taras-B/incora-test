@@ -6,8 +6,10 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 
+import { Loader } from '../components/Loader'
+
 import { fetchUsers } from '../store/ducks/users/actionCreator'
-import { selectUsersItems } from '../store/ducks/users/selector'
+import { selectIsUsersLoading, selectUsersItems } from '../store/ducks/users/selector'
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
@@ -22,12 +24,15 @@ export const Users: React.FC = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const users = useSelector(selectUsersItems)
+  const loading = useSelector(selectIsUsersLoading)
 
   useEffect(() => {
     dispatch(fetchUsers())
   }, [dispatch])
   //TODO:
   //* ADD style and icon in link
+  if (loading) return <Loader />
+
   return (
     <Grid container spacing={3}>
       {users.map((user) => (

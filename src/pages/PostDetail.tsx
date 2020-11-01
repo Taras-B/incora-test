@@ -6,7 +6,11 @@ import {
   fetchPost,
   fetchUpdatePost,
 } from '../store/ducks/post/actionCreator'
-import { selectCommentsItems, selectPostItem } from '../store/ducks/post/selector'
+import {
+  selectCommentsItems,
+  selectPostItem,
+  selectIsPostLoading,
+} from '../store/ducks/post/selector'
 import { useQuery } from '../utils/useQuery'
 
 import Grid from '@material-ui/core/Grid'
@@ -15,15 +19,20 @@ import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import { PostForm } from '../components/PostForm'
 import Divider from '@material-ui/core/Divider'
+import { GoBackButton } from '../components/GoBackButton'
+import { Loader } from '../components/Loader'
 
 export const PostDetail = () => {
   const [open, setOpen] = React.useState<boolean>(false)
   const query = useQuery()
   const userId = query.get('userId')
+
   const { postId } = useParams<{ postId: string }>()
   const dispatch = useDispatch()
   const post = useSelector(selectPostItem)
   const comments = useSelector(selectCommentsItems)
+  const loading = useSelector(selectIsPostLoading)
+
   console.log('userId')
 
   const addPost = useCallback(
@@ -39,12 +48,13 @@ export const PostDetail = () => {
       dispatch(fetchPost(+postId))
       dispatch(fetchComments(+postId))
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, postId])
 
+  if (loading) return <Loader />
   if (!post) return <div> no yet this post</div>
   return (
     <Grid container spacing={4}>
+      <GoBackButton />
       <Grid item xs={12}>
         <Paper elevation={7} style={{ padding: 10 }}>
           <Grid container spacing={1} alignItems='center'>
