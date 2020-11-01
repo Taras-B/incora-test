@@ -17,9 +17,13 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
-import { PostForm } from '../components/PostForm'
 import Divider from '@material-ui/core/Divider'
+import ArrowDownI from '@material-ui/icons/KeyboardArrowDown'
+import ArrowUpI from '@material-ui/icons/KeyboardArrowUp'
+import EmailIcon from '@material-ui/icons/AlternateEmail'
+
 import { GoBackButton } from '../components/GoBackButton'
+import { PostForm } from '../components/PostForm'
 import { Loader } from '../components/Loader'
 
 export const PostDetail = () => {
@@ -65,7 +69,15 @@ export const PostDetail = () => {
             </Grid>
             <Grid item xs={12}>
               <Button variant='outlined' color='primary' onClick={() => setOpen(!open)}>
-                {open ? 'Close' : 'Open'} form
+                {open ? (
+                  <>
+                    Close form <ArrowUpI />
+                  </>
+                ) : (
+                  <>
+                    Open edit form <ArrowDownI />
+                  </>
+                )}
               </Button>
             </Grid>
           </Grid>
@@ -91,8 +103,13 @@ export const PostDetail = () => {
             <Paper elevation={7} style={{ padding: 10 }}>
               <Grid container spacing={1} alignItems='center'>
                 <Grid item xs={12}>
-                  <Typography variant='caption'>{comment.email}</Typography>
+                  <Typography variant='caption'>
+                    <EmailIcon fontSize='small' /> {comment.email}
+                  </Typography>
+                  <Divider />
+
                   <Typography variant='subtitle2'>{comment.name}</Typography>
+                  <Divider />
                   <Typography variant='body1'>{comment.body}</Typography>
                 </Grid>
               </Grid>

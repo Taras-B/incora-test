@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
+import NextIcon from '@material-ui/icons/NavigateNext'
 
 import { Loader } from '../components/Loader'
 
 import { fetchUsers } from '../store/ducks/users/actionCreator'
 import { selectIsUsersLoading, selectUsersItems } from '../store/ducks/users/selector'
-import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
   root: {
@@ -29,8 +30,7 @@ export const Users: React.FC = () => {
   useEffect(() => {
     dispatch(fetchUsers())
   }, [dispatch])
-  //TODO:
-  //* ADD style and icon in link
+
   if (loading) return <Loader />
 
   return (
@@ -45,7 +45,7 @@ export const Users: React.FC = () => {
               </Grid>
               <Grid item xs={1}>
                 <Link to={`/posts?userId=${user.id}`}>
-                  <Typography>posts</Typography>
+                  <NextIcon fontSize='large' titleAccess='Posts User' color='primary' />
                 </Link>
               </Grid>
             </Grid>

@@ -11,6 +11,9 @@ import { GoBackButton } from '../components/GoBackButton'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
+
+import NextIcon from '@material-ui/icons/NavigateNext'
+
 import { Loader } from '../components/Loader'
 
 export const Posts: React.FC = () => {
@@ -50,7 +53,7 @@ export const Posts: React.FC = () => {
               </Grid>
               <Grid item xs={1}>
                 <Link to={`/posts/${post.id}?userId=${post.userId}`}>
-                  <Typography>link</Typography>
+                  <NextIcon fontSize='large' titleAccess='Posts User' color='primary' />
                 </Link>
               </Grid>
             </Grid>
