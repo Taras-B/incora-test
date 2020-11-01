@@ -32,9 +32,6 @@ export const postReducer = produce((draft: Draft<IPostState>, action: PostAction
             draft.post = action.payload
             draft.loading = LoadingState.LOADED
             break
-        case PostActionType.FETCH_DELETE_POST:
-            draft.loading = LoadingState.LOADING
-            break
         case PostActionType.SET_LOADING:
             draft.loading = action.payload
             break

@@ -3,7 +3,7 @@ import { IComment, IPost } from '../../../../type'
 
 export interface IPostState {
     post?: IPost
-    comments?: IComment[]
+    comments: IComment[]
     loading: LoadingState
 }
 
@@ -20,8 +20,6 @@ export enum PostActionType {
     SET_COMMENTS = 'post/SET_COMMENTS',
     FETCH_UPDATE_POST = 'post/FETCH_UPDATE_POST',
     UPDATE_POST = 'post/UPDATE_POST',
-    FETCH_DELETE_POST = 'post/FETCH_DELETE_POST',
-    DELETE_POST = 'post/DELETE_POST',
     SET_LOADING = 'post/SET_LOADING',
 }
 
@@ -53,15 +51,6 @@ export interface IUpdatePostAction extends Action<PostActionType> {
     type: PostActionType.UPDATE_POST
     payload: IPost
 }
-//* interface Delete post
-export interface IFetchDeletePostAction extends Action<PostActionType> {
-    type: PostActionType.FETCH_DELETE_POST
-    payload: number
-}
-export interface IDeletePostAction extends Action<PostActionType> {
-    type: PostActionType.DELETE_POST
-    payload: number
-}
 
 export interface ISetLoadingAction extends Action<PostActionType> {
     type: PostActionType.SET_LOADING
@@ -74,7 +63,6 @@ export type PostAction =
     | IFetchPostAction
     | IFetchUpdatePostAction
     | IUpdatePostAction
-    | IFetchDeletePostAction
-    | IDeletePostAction
+
     | ISetCommentsAction
     | IFetchCommentsAction

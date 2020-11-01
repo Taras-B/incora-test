@@ -34,7 +34,7 @@ export const postsAPI = {
         return response.data
     },
     async delete(postId: number) {
-        const response = await instance.delete<IPost>(`posts/${postId}`)
-        return response.data
+        const response = await instance.delete<number>(`posts/${postId}`)
+        return response.status
     },
 }

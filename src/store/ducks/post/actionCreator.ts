@@ -1,8 +1,7 @@
 import { IComment, IPost } from "../../../type";
 import {
-    IDeletePostAction,
+
     IFetchCommentsAction,
-    IFetchDeletePostAction,
     IFetchPostAction,
     IFetchUpdatePostAction,
     ISetCommentsAction,
@@ -41,11 +40,4 @@ export const updatePost = (payload: IPost): IUpdatePostAction => ({
     type: PostActionType.UPDATE_POST,
     payload
 })
-export const fetchDeletePost = (payload: number): IFetchDeletePostAction => ({
-    type: PostActionType.FETCH_DELETE_POST,
-    payload
-})
-export const deletePost = (payload: number): IDeletePostAction => ({
-    type: PostActionType.DELETE_POST,
-    payload
-})
+
