@@ -24,19 +24,22 @@ import { Loader } from '../components/Loader'
 
 export const Posts: React.FC = () => {
   const query = useQuery()
-  let userId = query.get('userId')
+  let userId = Number(query.get('userId'))
   const dispatch = useDispatch()
   const posts = useSelector(selectPostsItems)
   const loading = useSelector(selectIsPostsLoading)
 
+  if (!userId) {
+    userId = 1
+  }
   console.log(' USER_ID', userId)
-  //TODO: add userID
+
   const addPostWithForm = useCallback(
     (title: string, body: string) => {
-      dispatch(fetchAddPost({ title, body }))
+      dispatch(fetchAddPost({ title, body, userId }))
       console.log('add_post')
     },
-    [dispatch]
+    [dispatch, userId]
   )
   const deletePost = useCallback(
     (id: number) => {
@@ -48,7 +51,7 @@ export const Posts: React.FC = () => {
 
   useEffect(() => {
     if (userId) {
-      dispatch(fetchPosts(+userId))
+      dispatch(fetchPosts(userId))
     }
   }, [dispatch, userId])
 

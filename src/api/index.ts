@@ -25,8 +25,8 @@ export const postsAPI = {
         const response = await instance.get<Array<IComment>>(`posts/${postId}/comments`)
         return response.data
     },
-    async create(title: string, body: string) {
-        const response = await instance.post<IPost>('posts', { title, body, userId: 1 })
+    async create(body: { title: string, body: string, userId: number }) {
+        const response = await instance.post<IPost>('posts', body)
         return response.data
     },
     async update(body: IPost, id: number) {

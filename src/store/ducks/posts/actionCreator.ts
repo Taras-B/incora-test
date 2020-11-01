@@ -26,6 +26,7 @@ export const setPosts = (payload: Array<IPost>): ISetPostsAction => ({
 export const fetchAddPost = (payload: {
     title: string
     body: string
+    userId: number
 }): IFetchAddPostAction => ({
     type: PostsActionType.FETCH_ADD_POST,
     payload,

@@ -38,6 +38,7 @@ export interface IFetchAddPostAction extends Action<PostsActionType> {
     payload: {
         title: string
         body: string
+        userId: number
     }
 }
 export interface IAddPostAction extends Action<PostsActionType> {

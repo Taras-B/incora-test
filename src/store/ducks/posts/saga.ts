@@ -20,7 +20,7 @@ function* fetchPostsSaga({ payload }: IFetchAction) {
 }
 function* addPostSaga({ payload }: IFetchAddPostAction) {
     try {
-        const post = yield call(postsAPI.create, payload.title, payload.body)
+        const post = yield call(postsAPI.create, payload)
 
         yield put(addPost(post))
     } catch (e) {
