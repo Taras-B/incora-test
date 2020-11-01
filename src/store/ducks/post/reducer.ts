@@ -17,6 +17,14 @@ export const postReducer = produce((draft: Draft<IPostState>, action: PostAction
             draft.post = action.payload
             draft.loading = LoadingState.LOADED
             break
+        case PostActionType.FETCH_COMMENTS:
+            draft.comments = []
+            draft.loading = LoadingState.LOADING
+            break
+        case PostActionType.SET_COMMENTS:
+            draft.comments = action.payload
+            draft.loading = LoadingState.LOADED
+            break
         case PostActionType.FETCH_UPDATE_POST:
             draft.loading = LoadingState.LOADING
             break

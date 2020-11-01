@@ -29,8 +29,8 @@ export const postsAPI = {
         const response = await instance.post<IPost>('posts', { title, body, userId: 1 })
         return response.data
     },
-    async update(body: IPost) {
-        const response = await instance.put<IPost>('posts', body)
+    async update(body: IPost, id: number) {
+        const response = await instance.put<IPost>(`posts/${id}`, body)
         return response.data
     },
     async delete(postId: number) {

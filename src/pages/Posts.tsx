@@ -2,18 +2,18 @@ import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-
+import { useQuery } from '../utils/useQuery'
 import { fetchPosts, fetchAddPost } from '../store/ducks/posts/actionCreator'
 import { selectPostsItems } from '../store/ducks/posts/selector'
-import Paper from '@material-ui/core/Paper'
 import { PostForm } from '../components/PostForm'
-import { useQuery } from '../utils/useQuery'
+
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
 
 export const Posts: React.FC = () => {
   const query = useQuery()
-  const userId = query.get('userId')
+  let userId = query.get('userId')
   const dispatch = useDispatch()
   const posts = useSelector(selectPostsItems)
   console.log(' USER_ID', userId)
@@ -29,7 +29,6 @@ export const Posts: React.FC = () => {
   useEffect(() => {
     if (userId) {
       dispatch(fetchPosts(+userId))
-      console.log('fetch_posts')
     }
   }, [dispatch, userId])
 
@@ -54,7 +53,7 @@ export const Posts: React.FC = () => {
       ))}
 
       <Grid container justify='center' item>
-        <PostForm addPost={addPostWithForm} />
+        <PostForm buttonName='Add' addPost={addPostWithForm} />
       </Grid>
     </Grid>
   )

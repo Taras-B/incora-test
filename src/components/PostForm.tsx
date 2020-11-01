@@ -11,11 +11,16 @@ interface FormData {
 }
 
 interface IProps {
+  title?: string
+  body?: string
+  buttonName: string
   addPost: (title: string, body: string) => void
 }
 
-export const PostForm: React.FC<IProps> = ({ addPost }) => {
-  const { register, handleSubmit, reset } = useForm<FormData>()
+export const PostForm: React.FC<IProps> = ({ addPost, buttonName, body, title }) => {
+  const { register, handleSubmit, reset } = useForm<FormData>({
+    defaultValues: { title, body },
+  })
   const onSubmit = ({ title, body }: FormData) => {
     addPost(title, body)
     reset()
@@ -45,7 +50,7 @@ export const PostForm: React.FC<IProps> = ({ addPost }) => {
         />
 
         <Button type='submit' variant='contained' color='primary'>
-          add
+          {buttonName}
         </Button>
       </form>
     </Grid>

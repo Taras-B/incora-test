@@ -1,5 +1,5 @@
-import { Action } from "redux";
-import { IComment, IPost } from "../../../../type";
+import { Action } from 'redux'
+import { IComment, IPost } from '../../../../type'
 
 export interface IPostState {
     post?: IPost
@@ -10,9 +10,8 @@ export interface IPostState {
 export enum LoadingState {
     LOADING = 'LOADING',
     LOADED = 'LOADED',
-    ERROR = 'ERROR'
+    ERROR = 'ERROR',
 }
-
 
 export enum PostActionType {
     FETCH_POST = 'post/FETCH_POST',
@@ -27,49 +26,55 @@ export enum PostActionType {
 }
 
 export interface ISetPostAction extends Action<PostActionType> {
-    type: PostActionType.SET_POST,
+    type: PostActionType.SET_POST
     payload: IPost
 }
 
 export interface IFetchPostAction extends Action<PostActionType> {
-    type: PostActionType.FETCH_POST,
+    type: PostActionType.FETCH_POST
     payload: number
-
 }
 //*  Comments
 export interface ISetCommentsAction extends Action<PostActionType> {
-    type: PostActionType.SET_COMMENTS,
+    type: PostActionType.SET_COMMENTS
     payload: IComment[]
 }
 
 export interface IFetchCommentsAction extends Action<PostActionType> {
-    type: PostActionType.FETCH_COMMENTS,
+    type: PostActionType.FETCH_COMMENTS
     payload: number
 }
 // *interface Update post
 export interface IFetchUpdatePostAction extends Action<PostActionType> {
-    type: PostActionType.FETCH_UPDATE_POST,
+    type: PostActionType.FETCH_UPDATE_POST
     payload: IPost
 }
 export interface IUpdatePostAction extends Action<PostActionType> {
-    type: PostActionType.UPDATE_POST,
+    type: PostActionType.UPDATE_POST
     payload: IPost
 }
 //* interface Delete post
 export interface IFetchDeletePostAction extends Action<PostActionType> {
-    type: PostActionType.FETCH_DELETE_POST,
+    type: PostActionType.FETCH_DELETE_POST
     payload: number
 }
 export interface IDeletePostAction extends Action<PostActionType> {
-    type: PostActionType.DELETE_POST,
+    type: PostActionType.DELETE_POST
     payload: number
 }
 
-
 export interface ISetLoadingAction extends Action<PostActionType> {
-    type: PostActionType.SET_LOADING,
+    type: PostActionType.SET_LOADING
     payload: LoadingState
 }
 
-
-export type PostAction = ISetPostAction | ISetLoadingAction | IFetchPostAction | IFetchUpdatePostAction | IUpdatePostAction | IFetchDeletePostAction | IDeletePostAction
+export type PostAction =
+    | ISetPostAction
+    | ISetLoadingAction
+    | IFetchPostAction
+    | IFetchUpdatePostAction
+    | IUpdatePostAction
+    | IFetchDeletePostAction
+    | IDeletePostAction
+    | ISetCommentsAction
+    | IFetchCommentsAction

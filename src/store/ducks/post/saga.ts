@@ -25,7 +25,7 @@ function* workerFetchCommentsSaga({ payload }: IFetchCommentsAction) {
 
 function* workerUpdatePostSaga({ payload }: IFetchUpdatePostAction) {
     try {
-        const post = yield call(postsAPI.update, payload)
+        const post = yield call(postsAPI.update, payload, payload.id)
         yield put(updatePost(post))
     } catch (e) {
         console.log(e)
