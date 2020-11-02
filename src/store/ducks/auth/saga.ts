@@ -6,7 +6,8 @@ import { AuthActionType, IFetchAuthUserAction, LoadingAuthState } from './type';
 
 function* fetchAuthSaga({ payload }: IFetchAuthUserAction) {
     try {
-        const user = yield call(userAPI.getAll)
+        const user = yield call(userAPI.authPost, payload)
+        window.localStorage.setItem('isAuth', JSON.stringify(user))
         yield put(setAuthUser(user))
     } catch (e) {
         console.log(e)

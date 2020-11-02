@@ -1,4 +1,5 @@
 import { Action } from 'redux'
+import { SignInFormData } from '../../../../pages/SignIn'
 
 export interface IAuthUser {
     id: number
@@ -21,20 +22,26 @@ export enum LoadingAuthState {
 export enum AuthActionType {
     FETCH_SET_AUTH = 'auth/FETCH_SET_AUTH',
     SET_AUTH = 'auth/SET_AUTH',
+    SET_LOGOUT = 'auth/SET_LOGOUT',
+    CURRENT_AUTH = 'auth/CURRENT_AUTH',
     SET_LOADING = 'auth/SET_LOADING',
 }
 
 export interface ISetAuthAction extends Action<AuthActionType> {
     type: AuthActionType.SET_AUTH
-    payload: boolean
+    payload: IAuthUser
+}
+export interface ISetLogoutAction extends Action<AuthActionType> {
+    type: AuthActionType.SET_LOGOUT
+}
+export interface ICurrentAuthAction extends Action<AuthActionType> {
+    type: AuthActionType.CURRENT_AUTH
+    payload: IAuthUser
 }
 
 export interface IFetchAuthUserAction extends Action<AuthActionType> {
     type: AuthActionType.FETCH_SET_AUTH,
-    payload: {
-        username: string
-        password: string
-    }
+    payload: SignInFormData
 }
 
 export interface ISetAuthLoadingAction extends Action<AuthActionType> {
@@ -42,4 +49,4 @@ export interface ISetAuthLoadingAction extends Action<AuthActionType> {
     payload: LoadingAuthState
 }
 
-export type AuthAction = ISetAuthAction | ISetAuthLoadingAction | IFetchAuthUserAction
+export type AuthAction = ISetAuthAction | ISetLogoutAction | ISetAuthLoadingAction | IFetchAuthUserAction | ICurrentAuthAction

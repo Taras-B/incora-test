@@ -13,8 +13,17 @@ export const authReducer = produce((draft: Draft<IAuthState>, action: AuthAction
             draft.loading = LoadingAuthState.LOADING
             break
         case AuthActionType.SET_AUTH:
-            draft.isAuth = action.payload
+            draft.isAuth = true
+            draft.user = action.payload
             draft.loading = LoadingAuthState.LOADED
+            break
+        case AuthActionType.SET_LOGOUT:
+            draft.isAuth = false
+            draft.user = undefined
+            break
+        case AuthActionType.CURRENT_AUTH:
+            draft.isAuth = true
+            draft.user = action.payload
             break
         case AuthActionType.SET_LOADING:
             draft.loading = action.payload

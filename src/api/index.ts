@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { SignInFormData } from '../pages/SignIn'
+import { IAuthUser } from '../store/ducks/auth/type'
 import { IComment, IPost, IUser } from '../type'
 
 export const instance = axios.create({
@@ -6,8 +8,12 @@ export const instance = axios.create({
 })
 
 export const userAPI = {
-    async getAll() {
+    async getAll(): Promise<IUser[]> {
         const response = await instance.get<Array<IUser>>('users')
+        return response.data
+    },
+    async authPost(body: SignInFormData): Promise<IAuthUser> {
+        const response = await instance.post<IAuthUser>('users', body)
         return response.data
     }
 }

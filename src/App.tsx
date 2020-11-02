@@ -8,8 +8,24 @@ import { Users } from './pages/Users'
 import { Posts } from './pages/Posts'
 import { PostDetail } from './pages/PostDetail'
 import { SignIn } from './pages/SignIn'
+import { useDispatch } from 'react-redux'
+import { isCurrentAuthUser } from './store/ducks/auth/actionCreator'
 
 function App() {
+  const dispatch = useDispatch()
+  console.log('APP')
+
+  React.useEffect(() => {
+    const currentIsAuth = () => {
+      let user = window.localStorage.getItem('isAuth')
+      if (user) {
+        dispatch(isCurrentAuthUser(JSON.parse(user)))
+      }
+    }
+
+    currentIsAuth()
+  }, [dispatch])
+
   return (
     <div>
       <Header />
