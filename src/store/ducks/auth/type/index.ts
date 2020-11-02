@@ -26,22 +26,23 @@ export enum AuthActionType {
     CURRENT_AUTH = 'auth/CURRENT_AUTH',
     SET_LOADING = 'auth/SET_LOADING',
 }
-
+//* API POST sign in user
+export interface IFetchAuthUserAction extends Action<AuthActionType> {
+    type: AuthActionType.FETCH_SET_AUTH,
+    payload: SignInFormData
+}
 export interface ISetAuthAction extends Action<AuthActionType> {
     type: AuthActionType.SET_AUTH
     payload: IAuthUser
 }
+//* Logout user
 export interface ISetLogoutAction extends Action<AuthActionType> {
     type: AuthActionType.SET_LOGOUT
 }
+
 export interface ICurrentAuthAction extends Action<AuthActionType> {
     type: AuthActionType.CURRENT_AUTH
     payload: IAuthUser
-}
-
-export interface IFetchAuthUserAction extends Action<AuthActionType> {
-    type: AuthActionType.FETCH_SET_AUTH,
-    payload: SignInFormData
 }
 
 export interface ISetAuthLoadingAction extends Action<AuthActionType> {

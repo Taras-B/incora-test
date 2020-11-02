@@ -1,14 +1,16 @@
 import React from 'react'
 
+import { Route, Switch } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+
 import Container from '@material-ui/core/Container'
 
 import { Header } from './components/Header'
-import { Route, Switch } from 'react-router-dom'
 import { Users } from './pages/Users'
 import { Posts } from './pages/Posts'
 import { PostDetail } from './pages/PostDetail'
 import { SignIn } from './pages/SignIn'
-import { useDispatch } from 'react-redux'
+
 import { isCurrentAuthUser } from './store/ducks/auth/actionCreator'
 
 function App() {

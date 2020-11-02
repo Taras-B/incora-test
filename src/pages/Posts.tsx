@@ -8,9 +8,11 @@ import {
   fetchAddPost,
   fetchDeletePost,
 } from '../store/ducks/posts/actionCreator'
+
 import { selectPostsItems, selectIsPostsLoading } from '../store/ducks/posts/selector'
 import { PostForm } from '../components/PostForm'
 import { GoBackButton } from '../components/GoBackButton'
+import { Loader } from '../components/Loader'
 
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -19,8 +21,6 @@ import IconButton from '@material-ui/core/IconButton'
 
 import NextIcon from '@material-ui/icons/NavigateNext'
 import DeleteIcon from '@material-ui/icons/DeleteOutline'
-
-import { Loader } from '../components/Loader'
 
 export const Posts: React.FC = () => {
   const query = useQuery()
@@ -32,12 +32,10 @@ export const Posts: React.FC = () => {
   if (!userId) {
     userId = 1
   }
-  console.log(' USER_ID', userId)
 
   const addPostWithForm = useCallback(
     (title: string, body: string) => {
       dispatch(fetchAddPost({ title, body, userId }))
-      console.log('add_post')
     },
     [dispatch, userId]
   )

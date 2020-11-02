@@ -7,8 +7,8 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
-
 import LockOpen from '@material-ui/icons/LockOpen'
+
 import { fetchAuthUser } from '../store/ducks/auth/actionCreator'
 
 export interface SignInFormData {
@@ -20,10 +20,6 @@ const useStyles = makeStyles({
   wrapper: {
     height: 'calc(100vh - 64px)',
   },
-  buttonLink: {
-    textDecoration: 'none',
-    color: 'inherit',
-  },
 })
 
 export const SignIn: React.FC = () => {
@@ -34,8 +30,8 @@ export const SignIn: React.FC = () => {
   const { register, handleSubmit, reset } = useForm<SignInFormData>()
   const onSubmit = (data: SignInFormData) => {
     dispatch(fetchAuthUser(data))
-    history.push('/')
     reset()
+    history.push('/')
   }
   return (
     <Grid container justify='center' alignItems='center' className={classes.wrapper}>

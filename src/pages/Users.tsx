@@ -14,9 +14,6 @@ import { fetchUsers } from '../store/ducks/users/actionCreator'
 import { selectIsUsersLoading, selectUsersItems } from '../store/ducks/users/selector'
 
 const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
   paper: {
     padding: 10,
   },
