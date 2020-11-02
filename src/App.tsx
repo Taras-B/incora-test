@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom'
 import { Users } from './pages/Users'
 import { Posts } from './pages/Posts'
 import { PostDetail } from './pages/PostDetail'
+import { SignIn } from './pages/SignIn'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path='/' component={Users} />
           <Route exact path='/posts' component={Posts} />
           <Route exact path='/posts/:postId' component={PostDetail} />
+          <Route exact path='/auth/signIn' component={SignIn} />
         </Switch>
       </Container>
     </div>

@@ -39,7 +39,7 @@ export const PostDetail = () => {
 
   console.log('userId')
 
-  const addPost = useCallback(
+  const updatePost = useCallback(
     (title: string, body: string) => {
       dispatch(fetchUpdatePost({ title, body, id: +postId, userId: +userId! }))
       setOpen(false)
@@ -85,7 +85,7 @@ export const PostDetail = () => {
             <Grid container justify='center' item>
               <PostForm
                 buttonName='Update'
-                addPost={addPost}
+                addPost={updatePost}
                 title={post.title}
                 body={post.body}
               />

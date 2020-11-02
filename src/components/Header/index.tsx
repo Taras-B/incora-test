@@ -53,7 +53,7 @@ export const Header: React.FC = () => {
             <Grid item xs={2} container justify='flex-end'>
               <Grid item>
                 <Button color='inherit'>
-                  <Link to='/auth/login' className={classes.navLink}>
+                  <Link to='/auth/signIn' className={classes.navLink}>
                     Login
                   </Link>
                 </Button>
