@@ -9,7 +9,7 @@ import {
   fetchDeletePost,
 } from '../store/ducks/posts/actionCreator'
 
-import { selectPostsItems, selectIsPostsLoading } from '../store/ducks/posts/selector'
+import { selectIsPostsLoading, reselectPostsItems } from '../store/ducks/posts/selector'
 import { PostForm } from '../components/PostForm'
 import { GoBackButton } from '../components/GoBackButton'
 import { Loader } from '../components/Loader'
@@ -26,8 +26,9 @@ export const Posts: React.FC = () => {
   const query = useQuery()
   let userId = Number(query.get('userId'))
   const dispatch = useDispatch()
-  const posts = useSelector(selectPostsItems)
+  const posts = useSelector(reselectPostsItems)
   const loading = useSelector(selectIsPostsLoading)
+  console.log('POSTS')
 
   if (!userId) {
     userId = 1

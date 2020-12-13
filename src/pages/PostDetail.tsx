@@ -37,8 +37,6 @@ export const PostDetail = () => {
   const comments = useSelector(selectCommentsItems)
   const loading = useSelector(selectIsPostLoading)
 
-  console.log('userId')
-
   const updatePost = useCallback(
     (title: string, body: string) => {
       dispatch(fetchUpdatePost({ title, body, id: +postId, userId: +userId! }))
