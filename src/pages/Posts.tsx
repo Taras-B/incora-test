@@ -28,7 +28,7 @@ export const Posts: React.FC = () => {
   const dispatch = useDispatch()
   const posts = useSelector(reselectPostsItems)
   const loading = useSelector(selectIsPostsLoading)
-  console.log('POSTS')
+  console.log('POSTS', posts)
 
   if (!userId) {
     userId = 1
