@@ -15,13 +15,14 @@ describe('component back button', () => {
     render(<GoBackButton />)
     expect(screen.getByRole('button', { name: /go back/i })).toBeInTheDocument()
   })
+  test('button renders with correct text', () => {
+    render(<GoBackButton />)
+    expect(screen.getByRole('button', { name: /go back/i })).toHaveTextContent(/go back/i)
+  })
   test('click button', () => {
-    // const onClick = jest.fn()
-
     render(<GoBackButton />)
     const button = screen.getByRole('button', { name: /go back/i })
-    // const button = screen.getByText(/go back/i)
     fireEvent.click(button)
-    expect(button).toBeInTheDocument()
+    expect(button).toBeTruthy()
   })
 })

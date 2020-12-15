@@ -10,14 +10,19 @@ interface FormData {
   body: string
 }
 
-interface IProps {
+export interface IPropsPostForm {
   title?: string
   body?: string
   buttonName: string
   addPost: (title: string, body: string) => void
 }
 
-export const PostForm: React.FC<IProps> = ({ addPost, buttonName, body, title }) => {
+export const PostForm: React.FC<IPropsPostForm> = ({
+  addPost,
+  buttonName,
+  body,
+  title,
+}) => {
   const { register, handleSubmit, reset } = useForm<FormData>({
     defaultValues: { title, body },
   })
@@ -37,6 +42,7 @@ export const PostForm: React.FC<IProps> = ({ addPost, buttonName, body, title })
           fullWidth
           margin='normal'
           required={true}
+          data-testid='test-title'
         />
         <TextField
           inputRef={register({ required: true })}
@@ -47,6 +53,7 @@ export const PostForm: React.FC<IProps> = ({ addPost, buttonName, body, title })
           multiline
           required={true}
           margin='normal'
+          data-testid='test-body'
         />
 
         <Button type='submit' variant='contained' color='primary'>

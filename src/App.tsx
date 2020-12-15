@@ -15,7 +15,7 @@ import { isCurrentAuthUser } from './store/ducks/auth/actionCreator'
 
 function App() {
   const dispatch = useDispatch()
-  console.log('APP')
+  // console.log('APP')
 
   React.useEffect(() => {
     const currentIsAuth = () => {
